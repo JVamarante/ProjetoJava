@@ -8,15 +8,11 @@ public class Cliente {
     }
 
     public Conta criarConta(String tipoConta, String numeroConta) {
-        Conta conta = null;
-        switch (tipoConta) {
-            case "Corrente":
-                conta = new ContaCorrente(numeroConta, this);
-                break;
-            case "Poupanca":
-                conta = new ContaPoupanca(numeroConta, this);
-                break;
-        }
+        Conta conta = switch (tipoConta) {
+            case "Corrente" -> new ContaCorrente(numeroConta, this);
+            case "Poupanca" -> new ContaPoupanca(numeroConta, this);
+            default -> null;
+        };
         if (conta != null) {
             banco.adicionarConta(conta);
         }

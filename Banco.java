@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Banco {
-    private List<Conta> contas;
+    private final List<Conta> contas;
 
     public Banco() {
         contas = new ArrayList<>();
