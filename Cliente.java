@@ -9,8 +9,8 @@ public class Cliente {
 
     public Conta criarConta(String tipoConta, String numeroConta) {
         Conta conta = switch (tipoConta) {
-            case "Corrente" -> new ContaCorrente(numeroConta, this);
-            case "Poupanca" -> new ContaPoupanca(numeroConta, this);
+            case "corrente" -> new ContaCorrente(numeroConta, this);
+            case "poupanca" -> new ContaPoupanca(numeroConta, this);
             default -> null;
         };
         if (conta != null) {

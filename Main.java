@@ -26,14 +26,18 @@ public class Main {
                 conta.depositar(valorDeposito);
                 System.out.println("Saldo após depósito: " + conta.consultarSaldo());
 
-                System.out.println("Digite o valor para sacar:");
-                double valorSaque = Double.parseDouble(scanner.nextLine());
-                if (conta.sacar(valorSaque)) {
-                    System.out.println("Saque realizado com sucesso.");
-                } else {
-                    System.out.println("Saldo insuficiente para saque.");
+                System.out.println("Deseja sacar algum valor da conta? (s/n)");
+                String sacar = scanner.nextLine();
+                if (sacar.equalsIgnoreCase("s")) {
+                    System.out.println("Digite o valor para sacar:");
+                    double valorSaque = Double.parseDouble(scanner.nextLine());
+                    if (conta.sacar(valorSaque)) {
+                        System.out.println("Saque realizado com sucesso.");
+                    } else {
+                        System.out.println("Saldo insuficiente para saque.");
+                    }
+                    System.out.println("Saldo após saque: " + conta.consultarSaldo());
                 }
-                System.out.println("Saldo após saque: " + conta.consultarSaldo());
 
                 System.out.println("Deseja adicionar outra conta para o mesmo cliente? (s/n)");
                 continuarConta = scanner.nextLine();
