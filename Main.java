@@ -50,10 +50,10 @@ public class Main {
         }
 
         System.out.println("Contas criadas");
-        //for (Conta conta : banco.getContas()) {
-           // System.out.println("Número da conta: " + conta.getNumeroConta() + ", Saldo: " + conta.getSaldo() + ", Cliente: " + conta.getCliente().getNome());
+        for (Conta conta : banco.getContas()) {
+            System.out.println("Número da conta: " + conta.getNumeroConta() + ", Saldo: " + conta.getSaldo() + ", Cliente: " + conta.getCliente().getNome());
         }
 
-        //scanner.close();
+        scanner.close();
     }
-//}
+}
