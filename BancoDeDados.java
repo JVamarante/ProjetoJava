@@ -2,11 +2,12 @@ import java.sql.*;
 
 public class BancoDeDados {
     public static Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://localhost/clientedb";
+        String url = "jdbc:mariadb://localhost/clientedb";
         String usuario = "root";
-        String senha = "root2020";
+        String senha = "123";
         return DriverManager.getConnection(url, usuario, senha);
     }
+
     public static void inserirDados(String nome, String numeroConta, double saldo) {
         String sql = "INSERT INTO contas (nome, conta, saldo) VALUES (?, ?, ?)";
 
