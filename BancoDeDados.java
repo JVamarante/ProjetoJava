@@ -8,8 +8,8 @@ public class BancoDeDados {
         return DriverManager.getConnection(url, usuario, senha);
     }
 
-    public static void inserirDados(String nome, String numeroConta, double saldo) {
-        String sql = "INSERT INTO contas (nome, conta, saldo) VALUES (?, ?, ?)";
+    public static void inserirDados(String nome, String numeroConta, double saldo, String tipoConta) {
+        String sql = "INSERT INTO contas (nome, conta, saldo, tipo_conta) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -17,10 +17,16 @@ public class BancoDeDados {
             pstmt.setString(1, nome);
             pstmt.setString(2, numeroConta);
             pstmt.setDouble(3, saldo);
+            pstmt.setString(4, tipoConta);
 
-            pstmt.executeUpdate();
-            System.out.println("Dados inseridos com sucesso na tabela 'contas'.");
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Dados inseridos com sucesso na tabela 'contas'.");
+            } else {
+                System.out.println("Nenhum dado foi inserido na tabela 'contas'.");
+            }
         } catch (SQLException e) {
+            System.err.println("Erro ao inserir dados na tabela 'contas': " + e.getMessage());
             e.printStackTrace();
         }
     }

@@ -39,7 +39,7 @@ public class Main {
                     System.out.println("Saldo após saque: " + conta.consultarSaldo());
                 }
 
-                BancoDeDados.inserirDados(nome, conta.getNumeroConta(), conta.getSaldo());
+                BancoDeDados.inserirDados(nome, conta.getNumeroConta(), conta.getSaldo(), tipoConta);
 
                 System.out.println("Deseja adicionar outra conta para o mesmo cliente? (s/n)");
                 continuarConta = scanner.nextLine();
