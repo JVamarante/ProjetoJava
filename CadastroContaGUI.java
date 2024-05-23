@@ -1,15 +1,20 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class CadastroContaGUI extends JFrame implements ActionListener {
-    private JTextField nomeField, numeroContaField, saldoField;
-    private JComboBox<String> tipoContaCombo;
-    private JButton salvarButton;
+    private final JTextField nomeField;
+    private final JTextField numeroContaField;
+    private final JTextField saldoField;
+    private final JComboBox<String> tipoContaCombo;
+    private final JButton salvarButton;
+    private final JButton mostrarContasButton;
 
     public CadastroContaGUI() {
         setTitle("Cadastro de Conta");
-        setSize(600, 600);
+        setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -29,8 +34,11 @@ public class CadastroContaGUI extends JFrame implements ActionListener {
         JLabel saldoLabel = new JLabel("Saldo Inicial:");
         saldoField = new JTextField(20);
 
-        salvarButton = new JButton("Salvar");
+        salvarButton = new JButton("Criar conta");
         salvarButton.addActionListener(this);
+
+        mostrarContasButton = new JButton("Mostrar Contas");
+        mostrarContasButton.addActionListener(this);
 
         panel.add(nomeLabel);
         panel.add(nomeField);
@@ -41,8 +49,10 @@ public class CadastroContaGUI extends JFrame implements ActionListener {
         panel.add(saldoLabel);
         panel.add(saldoField);
         panel.add(salvarButton);
+        panel.add(mostrarContasButton);
 
-        add(panel);
+        add(panel, BorderLayout.NORTH);
+
         setVisible(true);
     }
 
@@ -61,7 +71,14 @@ public class CadastroContaGUI extends JFrame implements ActionListener {
             nomeField.setText("");
             numeroContaField.setText("");
             saldoField.setText("");
+        } else if (e.getSource() == mostrarContasButton) {
+            mostrarContas();
         }
+    }
+
+    private void mostrarContas() {
+        ArrayList<String[]> contas = BancoDeDados.buscarTodasContas();
+        new MostrarContasGUI(contas);
     }
 
     public static void main(String[] args) {
